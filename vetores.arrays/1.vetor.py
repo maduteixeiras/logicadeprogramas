@@ -22,7 +22,7 @@ while True:
 
 # caso seja entre 2 e 5 notas parta inserir ele vai para outra etapa, inseriri suas notas 
 #sendo que a maior nota que ele pode inserir é 10 
-print("\n=== INSERINDO AS NOTAS ===")
+print("\n=== INSERINDO AS NOTAS  ===") 
 for i in range(quantidade_notas): 
     while True: 
         nota = float(input(f"Digite sua {i+1}° nota:\n"))
@@ -57,10 +57,10 @@ print(f"Sua média foi de : {media: .2f} ")
 # requisitos de aprovação
 print("\n=== RESULTADO FINAL ===")
 if media >= 7: 
-    print("Parabens! Você foi aprovado")
+    print("Parabens! Você foi aprovado 👍")
 elif media >= 5: 
-    print("Você foi para a recuperação!")
+    print("Você foi para a recuperação! 🫥")
 else: 
-    print("Infelizmente você está reprovado!")
+    print("Infelizmente você está reprovado! ❌")
 
 
