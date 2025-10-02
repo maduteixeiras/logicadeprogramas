@@ -40,15 +40,26 @@ Código \t Prato \t\t Valor
 
 while True: 
     escolha_codigo = int(input("Digite pelo código (1 a 5) qual prato deseja:\n"))
-    if escolha_codigo <= 5 and escolha_codigo >= 1:
+    
+    if escolha_codigo in lista_códigos:
         lista_escolhas.append(escolha_codigo)
-        outra_opção = str(input("Deseja escolher outro prato? (S ou N)\n")).upper()
-        if outra_opção == "N":
+        
+        outra_opcao = str(input("Deseja escolher outro prato? (S ou N)\n")).upper()
+        if outra_opcao == "N":
             break
+    else:
+        print("Código inválido! Digite um número de 1 a 5.")
 
-### terminarrrrr e mostrarrrrr na telaaaaaa
+# Mostrar resumo do pedido
+print("\n===== Seu Pedido =====")
+total = 0
+for codigo in lista_escolhas:
+    prato = lista_pratos[codigo - 1]
+    valor = lista_valores[codigo - 1]
+    print(f"{prato} - R$ {valor: .2f}")
+    total += valor
 
-
+print(f"\nValor total da conta: R$ {total: .2f}")
         
             
         
@@ -58,4 +69,5 @@ while True:
 
 
     
+
         
