@@ -12,29 +12,43 @@ def menu():
 def calcular(opcao, numeros):
     match opcao:
         case 1:  # Adição
-            return sum(numeros)
+            soma = sum(numeros)
+            print("Resultado da adição:", soma)
+
         case 2:  # Subtração
             resultado = numeros[0]
             for n in numeros[1:]:
                 resultado -= n
-            return resultado
+            print("Resultado da subtração:", resultado)
+
         case 3:  # Multiplicação
             resultado = 1
             for n in numeros:
                 resultado *= n
-            return resultado
-        case 4:  # Raiz quadrada (primeiro número apenas)
-            return math.sqrt(numeros[0])
-        case 5:  # Ao quadrado (primeiro número apenas)
-            return numeros[0] ** 2
-        case 6:  # Porcentagem (primeiro número é o valor, segundo é a %)
-            if len(numeros) < 2:
-                return "Para porcentagem informe pelo menos 2 números (valor e %)."
-            return (numeros[0] * numeros[1]) / 100
-        case _:
-            return "Opção inválida!"
+            print("Resultado da multiplicação:", resultado)
 
-# Programa principal (sem main)
+        case 4:  # Raiz quadrada de todos
+            print("Raiz quadrada de cada número:")
+            for n in numeros:
+                if n >= 0:
+                    print(f"{n} → {math.sqrt(n)}")
+                else:
+                    print(f"{n} → Não existe raiz real")
+
+        case 5:  # Ao quadrado de todos
+            print("Quadrado de cada número:")
+            for n in numeros:
+                print(f"{n} → {n ** 2}")
+
+        case 6:  # Porcentagem de todos
+            print("Porcentagem (valor → resultado):")
+            for n in numeros:
+                print(f"{n}% de 100 = {(100 * n) / 100}")
+                # aqui fiz a conta em cima de 100, mas dá pra adaptar
+        case _:
+            print("Opção inválida!")
+
+# Programa principal
 while True:
     try:
         qtd = int(input("\nQuantos números deseja informar? "))
@@ -46,8 +60,7 @@ while True:
         menu()
         opcao = int(input("Digite a opção desejada: "))
 
-        resultado = calcular(opcao, numeros)
-        print("Resultado:", resultado)
+        calcular(opcao, numeros)
 
         continuar = input("\nDeseja realizar outra operação? (s/n): ").lower()
         if continuar != "s":
