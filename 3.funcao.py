@@ -12,7 +12,9 @@ def menu():
 def calcular(opcao, numeros):
     match opcao:
         case 1:  # Adição
-            soma = sum(numeros)
+            soma = 0
+            for n in numeros:
+                soma += n
             print("Resultado da adição:", soma)
 
         case 2:  # Subtração
@@ -33,38 +35,35 @@ def calcular(opcao, numeros):
                 if n >= 0:
                     print(f"{n} → {math.sqrt(n)}")
                 else:
-                    print(f"{n} → Não existe raiz real")
+                    print(f"{n} → não existe raiz real")
 
         case 5:  # Ao quadrado de todos
             print("Quadrado de cada número:")
             for n in numeros:
                 print(f"{n} → {n ** 2}")
 
-        case 6:  # Porcentagem de todos
-            print("Porcentagem (valor → resultado):")
+        case 6:  # Porcentagem (considerando % de 100)
+            print("Porcentagem (em relação a 100):")
             for n in numeros:
-                print(f"{n}% de 100 = {(100 * n) / 100}")
-                # aqui fiz a conta em cima de 100, mas dá pra adaptar
+                print(f"{n}% de 100 = {(n * 100) / 100}")
+
         case _:
             print("Opção inválida!")
 
 # Programa principal
-while True:
-    try:
-        qtd = int(input("\nQuantos números deseja informar? "))
-        numeros = []
-        for i in range(qtd):
-            n = float(input(f"Digite o {i+1}º número: "))
-            numeros.append(n)
+continuar = "s"
+while continuar == "s":
+    qtd = int(input("\nQuantos números deseja informar? "))
+    numeros = []
+    for i in range(qtd):
+        n = float(input(f"Digite o {i+1}º número: "))
+        numeros.append(n)
 
-        menu()
-        opcao = int(input("Digite a opção desejada: "))
+    menu()
+    opcao = int(input("Digite a opção desejada: "))
 
-        calcular(opcao, numeros)
+    calcular(opcao, numeros)
 
-        continuar = input("\nDeseja realizar outra operação? (s/n): ").lower()
-        if continuar != "s":
-            print("Encerrando a calculadora...")
-            break
-    except ValueError:
-        print("Entrada inválida. Digite apenas números.")
+    continuar = input("\nDeseja realizar outra operação? (s/n): ").lower()
+
+print("Encerrando a calculadora...")
