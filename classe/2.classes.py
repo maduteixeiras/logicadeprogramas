@@ -1,19 +1,26 @@
-import os 
+import os
+from dataclasses import dataclass
 os.system("cls")
 
+# Estrutua de dados: classe.
 @dataclass
-class pessoa: 
-    nome : str 
-    idade : int 
-    cpf : str 
+class Pessoa:
+    nome: str
+    idade: int
+    cpf: str
 
 @dataclass
-class pet:
-    nome : str 
-    idade : int 
+class Pet:
+    nome: str
+    idade: int
     peso: float
 
-pessoa1 = pessoa("Maria" , 16, '123456789011')
-pet1 = pet("Toffe", 1, 2.1)
+# Exemplo de uso da classe.
+pessoa1 = Pessoa(nome="Marta",cpf="21545852", idade=20)
+pet1 = Pet(nome="Totó", idade=4, peso=2.100)
 
+print("Exibindo dados da Pessoa.")
+print(f"Nome: {pessoa1.nome}\nIdade: {pessoa1.idade}\nCPF: {pessoa1.cpf}\n")
 
+print("Exibindo dados do Pet.")
+print(f"Nome: {pet1.nome}\nIdade: {pet1.idade}\nPeso: {pet1.peso}")

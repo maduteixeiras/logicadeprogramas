@@ -1,6 +1,5 @@
 
 """"
-
 class carro: 
     def __init__(self): 
         self.marca = 'honda'
@@ -11,7 +10,6 @@ class carro:
 
 carro1 = carro()
 print(carro1.marca, carro1.modelo, carro1.ano, carro1.cor
-
 """ 
 
 class carro: # classe
