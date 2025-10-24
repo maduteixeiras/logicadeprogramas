@@ -29,6 +29,7 @@ endereco_user = input("Digite seu endereço: ")
 
 os.system("cls")
 
+
 dados_cadastro_user = cadastro(nome_user, email_user, endereco_user)
 dados_cadastro_user.dados_entrega()
 dados_cadastro_user.dados_email_marketing()
