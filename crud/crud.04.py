@@ -39,6 +39,25 @@ class Aluno:
         print(f"")
         print("-------------------------")
 
+
+#adiconando aluno 
+
+def AdicionarAluno(alunos_cadastrados): 
+    print("-- Adicionando Alunos --")
+    nome = input("Digite nome: ")
+    nascimento = input("Digite nascimento: ")
+    curso = input("Digite curso: ")
+    lougadouro = input("Digite lougradouro: ") 
+    numero = input("Digite n° da casa: ")
+    cidade = input("Digite cidade: ")
+    estado = input("Digite estado: ")
+    cpf = input("Digite CPF: ").strip().replace('.', '').replace('-', '')
+
+    endereco_aluno = Endereco(lougadouro=lougadouro, numero=numero, cidade=cidade, estado=estado)
+    novo_aluno = Aluno(nome=nome, nascimento=nascimento, curso=curso, endereco=endereco_aluno, cpf= cpf)
+    alunos_cadastrados.append(novo_aluno)
+
+
 #verificação da lista, Caso Vazio 
 def ListaVazia(alunos_cadastrados): 
     if not alunos_cadastrados: 
@@ -68,7 +87,7 @@ def buscar_aluno_por_cpf(lista_alunos):
         print(f"\n❌ Aluno com CPF {cpf_busca} não encontrado.")
 
 # Exibir 
-def ExibirDados(alunos_cadastrados): 
+def ExibirTodos(alunos_cadastrados): 
     if ListaVazia(alunos_cadastrados):
         return 
     
@@ -80,11 +99,93 @@ def ExibirDados(alunos_cadastrados):
         time.sleep(0.5) 
 
 # Atualizar
-def AtualizarFuncionario(os_funcionarios_cadastrados): 
-    if ListaVazia(os_funcionarios_cadastrados): 
+def AtualizarAluno(alunos_cadastrados): 
+    if ListaVazia(alunos_cadastrados): 
         return
     
-    ExibirDados(alunos_cadastrados)
+    ExibirTodos(alunos_cadastrados)
     print("\n-- ATUALIZAR ALUNO --")
 
+    cpf_busca = input("Informe CPF do funcionario que deseja buscar: ")
+    aluno_para_buscar = buscar_aluno_por_cpf(alunos_cadastrados, cpf_busca)
+
+    if aluno_para_buscar: 
+        print(f"Aluno {aluno_para_buscar.nome} encontrado!")
+        print("Informe novas informaçõs ou *mantenha em branco* para manter!")
+
+        print(f"\nNome atual: {aluno_para_buscar.nome}")
+        novo_nome = input("Digite novo nome: ")
+
+        print(f"Data denascimento atual: {aluno_para_buscar.nascimento}")
+        novo_nascimento = input("Digite novo nascimento: ")
+
+        print(f"Curso atual: {aluno_para_buscar.curso}")
+        novo_curso = input("Digite novo curso: ")
+
+        print(f"Endereço atual: {aluno_para_buscar.endereco}")
+        novo_endereco = input("Digite noco endereço: ")
+
+    if novo_nome: 
+        aluno_para_buscar.nome = novo_nome
+
+    if novo_nascimento: 
+        aluno_para_buscar.nascimento = novo_nascimento
+
+    if novo_curso: 
+        aluno_para_buscar.curso = novo_curso
+
+    if novo_endereco: 
+        aluno_para_buscar.endereco = novo_endereco
+
+        print("Dados Atualizados com sucesso! 👍")
+    else: 
+        print("Aluno não encontrado através do CPF 🫥")
   
+def EXcluiraluno(alunos_cadastrados):
+    if not ListaVazia(alunos_cadastrados):
+        return
+
+    ExibirTodos(alunos_cadastrados)
+    print("\n Informe CPF do aluno que deseja excluir:")
+
+    cpf_busca = input("CPF: ")
+    aluno_para_excluir = buscar_aluno_por_cpf(alunos_cadastrados, cpf_busca)
+
+    if aluno_para_excluir:
+        alunos_cadastrados.remove(aluno_para_excluir)
+        print("Aluno ❌ com sucesso!")
+    else: 
+        print("Erro ao deletar aluno!")
+
+
+
+
+def menu(): 
+
+    while True: 
+        print("--- MENU PRINCIPAL ---")
+        print("1 - Adicionar Aluno ")
+        print("2 - Exibir todos os alunos ")
+        print("3 - Atualizar aluno ")
+        print("4 - Excluir aluno ")
+
+        opcao = input("\nOpção = ")
+
+        match opcao: 
+            case "1": 
+                AdicionarAluno(alunos_cadastrados)
+            case "2":
+                ExibirTodos(alunos_cadastrados)
+            case "3":
+                AtualizarAluno(alunos_cadastrados)
+            case  "4":
+                EXcluiraluno(alunos_cadastrados)
+            case "5":
+                print("Saindo do sistema 💢 ")
+                time(3)
+                os.system("cls")
+            case _: 
+                print("Insera uma opção válida!")
+            
+
+menu()
